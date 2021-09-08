@@ -10,13 +10,17 @@ function App() {
       <div className="menu-icon">
         <strong> &#9776;</strong>
       </div>
-      <header className="header">
+      <header className="header border">
         <div className="header__search">Search...</div>
-        <div className="header__avatar">Logout</div>
+        <div className='header__title'>Cerebro Reporting</div>
+        <div className='header__profile'>
+          <div className='header__avatar'>Your face</div>
+          <div className="header__access">Logout</div>
+        </div>
       </header>
-      <aside className="sidenav">
+      <aside className="sidenav border">
         <div className="sidenav__close-icon">
-          <strong>&times;</strong>
+          <i className="fas fa-times"></i>
         </div>
         <ul className="sidenav__list">
           <li className="sidenav__list-item">Menu item1</li>
@@ -26,7 +30,7 @@ function App() {
           <li className="sidenav__list-item">Menu item5</li>
         </ul>
       </aside>
-      <main className="main">
+      <main className="main border">
         <div className="main_overview">
           <div className="overview_card">
             <div className="overview_card-info">Overview</div>
@@ -52,8 +56,8 @@ function App() {
           <div className="card">Card</div>
         </div>
       </main>
-      <footer className="footer">
-        <div className="footer_copyright">&copy;2020</div>
+      <footer className="footer border">
+        <div className="footer_copyright">&copy;2021</div>
         <div className="footer_byline">Made with &hearts;</div>
       </footer>
     </div>

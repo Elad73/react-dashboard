@@ -2,7 +2,7 @@ function Main() {
     return (
     <main className='main border'>
         <div className="main-overview">
-            <div className="overviewcard">
+            <div className="overview_card">
                 <div className="overviewcard__icon">Overview</div>
                 <div className="overviewcard__info">Card</div>
             </div>
@@ -20,7 +20,7 @@ function Main() {
             </div>
         </div>
 
-        <div className="main-cards">
+        <div className="main_cards">
             <div className="card">Card</div>
             <div className="card">Card</div>
             <div className="card">Card</div>
