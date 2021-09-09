@@ -4,6 +4,10 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 import { useState } from "react";
+import QueryBuilder, { formatQuery, RuleGroupType } from "react-querybuilder";
+import CombinatorSelector from "./CombinatorSelector";
+import fields from "../fields";
+import getOperators from "../getOperators";
 
 function App() {
 
@@ -13,13 +17,19 @@ function App() {
     setActive(!isActive);    
   };
 
+  const [query, setQuery] = useState<RuleGroupType>({
+    id: "root",
+    combinator: "and",
+    rules: [],
+});
+
 
   return (
       <div className="grid-container">
         <div className="menu-icon" onClick={handleToggle}>
           <strong> &#9776;</strong>
         </div>
-        <header className="header border">
+        <header className="header ">
           <div className="header__search">Search...</div>
           <div className='header__title'>Cerebro Reporting</div>
           <div className='header__profile'>
@@ -27,7 +37,7 @@ function App() {
             <div className="header__access">Logout</div>
           </div>
         </header>
-        <aside className={isActive ? "sidenav border active" : "sidenav border"} >
+        <aside className={isActive ? "sidenav  active" : "sidenav "} >
           <div className="sidenav__close-icon"  onClick={handleToggle}>
             <i className="fas fa-times"></i>
           </div>
@@ -38,8 +48,26 @@ function App() {
             <li className="sidenav__list-item">Menu item4</li>
             <li className="sidenav__list-item">Menu item5</li>
           </ul>
-        </aside>
-        <main className="main border">
+      </aside>
+      <div className='builder border'>
+                <QueryBuilder
+                    fields={fields}
+                    query={query}
+                    onQueryChange={(q) => setQuery(q)}
+                    getOperators={getOperators}
+                    controlElements={{
+                        //addGroupAction: () => null,
+                        combinatorSelector: CombinatorSelector,
+                    }}
+                />
+                <div className="builder-card">
+                    <div className="builder-card__heading">{formatQuery(query, "sql")}</div>
+                </div>
+                <div className="builder-card">
+                    <div className="builder-card__updates">{formatQuery(query, "json")}</div>
+                </div>
+            </div>
+        <main className="main ">
           <div className="main_overview">
             <div className="overview_card">
               <div className="overview_card-info">Overview</div>
@@ -65,7 +93,7 @@ function App() {
             <div className="card">Card</div>
           </div>
         </main>
-        <footer className="footer border">
+        <footer className="footer ">
           <div className="footer_copyright">&copy;2021</div>
           <div className="footer_byline">Made with &hearts;</div>
         </footer>
@@ -74,10 +102,16 @@ function App() {
 }
 
 // function App() {
+//   const [isActive, setActive] = useState(false);
+
+//   const handleToggle = () => {
+//     setActive(!isActive);    
+//   };
 //   return (
-//       <div id='page' className='grid-container border'>
-//         <div className="menu-icon">
-//             <i className="fas fa-bars"></i>
+//       <div className="grid-container">
+//         <div className="menu-icon" onClick={handleToggle}>
+//           <strong> &#9776;</strong>
+//           <i className="fas fa-bars"></i>
 //         </div>
 //         <Header />
 //         <Builder />
