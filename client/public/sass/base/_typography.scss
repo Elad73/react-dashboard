@@ -1,0 +1,18 @@
+html {
+    //this defines what 1rem is
+    // the user default value is 16px, since we want a 10px so in percentage turns to 62.5%
+    font-size: 62.5%; // 1rem =  10px,  10px/16px = 62.5%
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: $ruler;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: -0.2px;
+    padding: 3rem;
+  
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+

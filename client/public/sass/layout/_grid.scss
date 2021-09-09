@@ -1,0 +1,106 @@
+/*** Assign grid instructions to our parent grid container ***/
+.grid-container {
+    display: grid;
+    grid-template-columns:  1fr; /* Side nav is hidden on mobile */
+    grid-template-rows: 50px 250px 1fr 50px;
+    grid-template-areas:
+      'header'
+      'builder'
+      'main'
+      'footer';
+    height: 100vh;
+  }
+  
+  /*** grid-areas ***/
+  .header {
+    grid-area: header;
+  }
+    
+  .footer {
+    grid-area: footer;  
+  }
+  
+  .builder {
+      grid-area: builder;
+      overflow: auto;
+  }
+  
+  .main {
+    grid-area: main;
+    background-color:$color-secondary-background;
+  }
+  
+  .sidenav {
+    grid-area: sidenav;
+  }
+
+
+  /* Layout for main content overview  and its cards*/
+.main_overview {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid lightgreen;
+  }
+  
+  
+  .overview_card {
+    display: flex;
+    flex-basis: 250px;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 10px;
+    padding: 20px;
+    height: 100px;
+    border: 1px solid $color-secondary-dark;
+    border-radius: 4px;
+    background-color: $color-primary-light-background;
+  }
+  
+  /* Layout for main-cards section // below main_overview */
+  .main_cards {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 500px 200px 300px;
+    grid-template-areas:
+      'card1'
+      'card2'
+      'card3';
+    grid-gap: 10px;
+  }
+  
+  .card {
+    padding: 20px;
+    border: 1px solid #394263;
+    border-radius: 4px;
+    color: #648ca6;  
+  }
+  
+  
+  /* Force varying heights to simulate dynamic content */
+  .card:first-child {
+    /* height: 40%; */
+    grid-area: card1;
+  }
+  
+  .card:nth-child(2) {
+    /* height: 20%; */
+    grid-area: card2;
+  }
+  
+  .card:nth-child(3) {
+    /* height: 30%; */
+    grid-area: card3;
+  }
+  
+  .builder-card {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    /* height: 5vh; Force our height since we don't have actual content yet */
+    background-color: #e3e4e6;
+    color: slategray;
+  }

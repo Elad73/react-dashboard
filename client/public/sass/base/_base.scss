@@ -1,0 +1,50 @@
+// Base css styling - covering:
+// all base tags
+
+// @import "~react-querybuilder/dist/query-builder.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+  font-size: 15px;
+  color: $color-primary;
+}
+
+.border {
+    border: $color-test-border;
+    border-width: 0.2rem;
+    border-style: groove;
+}
+
+
+
+
+
+
+/* Hamburger menu icon, stays fixed on mobile for any possible scrolling */
+.sidenav-icon {
+  position: fixed;
+  display: flex;
+  width: 10px;
+  height: 10px;
+  top: 38px;
+  left: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 1;
+  cursor: pointer;
+  padding: 12px;
+  background-color: #DADAE3;
+
+}
+
+
+
+
+
+
+
+ 

@@ -26,9 +26,7 @@ function App() {
 
   return (
       <div className="grid-container">
-        <div className="menu-icon" onClick={handleToggle}>
-          <strong> &#9776;</strong>
-        </div>
+      
         <header className="header ">
           <div className="header__search">Search...</div>
           <div className='header__title'>Cerebro Reporting</div>
@@ -36,8 +34,12 @@ function App() {
             <div className='header__avatar'>Your face</div>
             <div className="header__access">Logout</div>
           </div>
-        </header>
-        <aside className={isActive ? "sidenav  active" : "sidenav "} >
+      </header>
+      <div className="sidenav-icon" onClick={handleToggle}>
+            <strong> &#9776;</strong>
+      </div>
+      <aside className={isActive ? "sidenav  active" : "sidenav "} >
+         
           <div className="sidenav__close-icon"  onClick={handleToggle}>
             <i className="fas fa-times"></i>
           </div>
@@ -49,7 +51,7 @@ function App() {
             <li className="sidenav__list-item">Menu item5</li>
           </ul>
       </aside>
-      <div className='builder border'>
+      <div className='builder'>
                 <QueryBuilder
                     fields={fields}
                     query={query}
@@ -109,7 +111,7 @@ function App() {
 //   };
 //   return (
 //       <div className="grid-container">
-//         <div className="menu-icon" onClick={handleToggle}>
+//         <div className="sidenav-icon" onClick={handleToggle}>
 //           <strong> &#9776;</strong>
 //           <i className="fas fa-bars"></i>
 //         </div>

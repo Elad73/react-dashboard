@@ -1,0 +1,43 @@
+
+/* Medium-sized screen breakpoint (tablet, 1050px) */
+@media only screen and (min-width: 750px) {
+    /* Show the sidenav */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 15vw 1fr;
+      grid-template-rows: 50px auto 1fr 50px;
+      grid-template-areas:
+        "sidenav header"
+        "sidenav builder"
+        "sidenav main"
+        "footer footer";
+      height: 100vh;
+    }
+  
+    .sidenav {
+      display: flex;
+      flex-direction: column;
+      position: relative; /* Fixed position on mobile */
+      transform: translateX(0); 
+    //   transition: all 6s ease-in-out; 
+    }
+  
+    /* Break out main cards into two columns */
+    .main_cards {
+      margin: 10px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 200px 300px;
+      grid-template-areas:
+        'card1 card2'
+        'card1 card3';
+      grid-gap: 10px;
+    }
+  
+    /* Non visible on larger screens  */
+    .sidenav__close-icon {
+      /* visibility: hidden; */
+      display: none;
+    }
+  }
+  

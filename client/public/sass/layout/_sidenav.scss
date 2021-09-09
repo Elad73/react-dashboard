@@ -1,0 +1,49 @@
+/*** flexing sidenav ***/
+/* Mobile-first side nav styles */
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  z-index: 2; /* Needs to sit above the hamburger menu icon */
+  background-color: $color-primary-dark-background;
+  transform: translateX(-345px);
+  //  transition: all 6s ease-in-out; 
+}
+
+/* The active class is toggled on hamburger and close icon clicks */
+.sidenav.active {
+  transform: translateX(0);
+}
+
+
+.sidenav__list {
+  padding: 0;
+  margin-top: 8.5rem;
+  list-style-type: none;
+}
+
+.sidenav__list-item {
+  padding: 20px 20px 20px 40px;
+  color: $color-primary;
+}
+
+.sidenav__list-item:hover {
+  background-color: $color-primary-background;
+  cursor: pointer;
+}
+
+/* Only visible on mobile screens */
+.sidenav__close-icon {
+  position: absolute;
+  visibility: visible;
+  /* top: 8px;
+  right: 12px; */
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  /* font-size: 20px; */
+  color: $color-primary;
+}

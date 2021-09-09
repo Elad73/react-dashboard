@@ -1,0 +1,22 @@
+  
+/*** flexing header and footer ***/
+.header, .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.6rem;
+    background-color:$color-primary-background;
+    color:$color-primary;
+  }
+  
+  .header__profile {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+/* Make room for the menu icon on mobile */
+.header__search {
+  /* margin-left: 42px; */
+  margin-left: 24px;
+}
