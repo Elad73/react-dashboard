@@ -9,6 +9,7 @@ import CombinatorSelector from "./CombinatorSelector";
 import fields from "../fields";
 import getOperators from "../getOperators";
 import ValueEditor from "../ValueEditor";
+import valueProcessor from "../valueProcessor";
 
 function App() {
 
@@ -65,10 +66,10 @@ function App() {
                     }}
                 />
                 <div className="builder-card">
-                    <div className="builder-card__heading">{formatQuery(query, "sql")}</div>
+                  <div className="builder-card__heading">{formatQuery(query, {format: "sql", valueProcessor})}</div>
                 </div>
                 <div className="builder-card">
-                    <div className="builder-card__updates">{formatQuery(query, "json")}</div>
+                  <div className="builder-card__updates">{formatQuery(query, "json")}</div>
                 </div>
             </div>
         <main className="main ">
