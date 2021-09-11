@@ -8,6 +8,7 @@ import QueryBuilder, { formatQuery, RuleGroupType } from "react-querybuilder";
 import CombinatorSelector from "./CombinatorSelector";
 import fields from "../fields";
 import getOperators from "../getOperators";
+import ValueEditor from "../ValueEditor";
 
 function App() {
 
@@ -59,7 +60,8 @@ function App() {
                     getOperators={getOperators}
                     controlElements={{
                         //addGroupAction: () => null,
-                        combinatorSelector: CombinatorSelector,
+                      combinatorSelector: CombinatorSelector,
+                      valueEditor: ValueEditor,
                     }}
                 />
                 <div className="builder-card">
