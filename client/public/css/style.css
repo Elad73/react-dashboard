@@ -40,12 +40,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.builder {
+  color: red; }
+
 /*** Assign grid instructions to our parent grid container ***/
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
   /* Side nav is hidden on mobile */
-  grid-template-rows: 50px 250px 1fr 50px;
+  grid-template-rows: 50px 1fr 1fr 50px;
   grid-template-areas: 'header' 'builder' 'main' 'footer';
   height: 100vh; }
 
@@ -57,8 +60,7 @@ body {
   grid-area: footer; }
 
 .builder {
-  grid-area: builder;
-  overflow: auto; }
+  grid-area: builder; }
 
 .main {
   grid-area: main;
@@ -173,8 +175,8 @@ body {
   .grid-container {
     display: grid;
     grid-template-columns: 15vw 1fr;
-    grid-template-rows: 50px auto 1fr 50px;
-    grid-template-areas: "sidenav header" "sidenav builder" "sidenav main" "footer footer";
+    grid-template-rows: 50px 1fr 1fr 50px;
+    grid-template-areas: 'sidenav header' 'sidenav builder' 'sidenav main' 'footer footer';
     height: 100vh; }
   .sidenav {
     display: flex;

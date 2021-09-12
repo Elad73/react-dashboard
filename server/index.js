@@ -27,14 +27,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
 
-app.post('/api/watchdog/', async (req, res) => {
-    console.log('in watchdog');
+app.post('/api/sales/', async (req, res) => {
+    console.log('in sales');
     const query = req.body;
-    console.log('watchdog: req.body -> ' + query);
+    console.log('sales: req.body -> ' + query);
     const { sql, params } = formatQuery(query, 'parameterized');
     const whereClause = processSQL(sql);
     const testRawData = `SELECT * FROM sales WHERE ${whereClause} ORDER BY order_id ASC`;
-    const selectRawData = `SELECT * FROM app.drup_watchdog limit 10;`;
+    const selectRawData = `SELECT * FROM sales limit 10;`;
     console.log(selectRawData);
     console.log(params);
 
