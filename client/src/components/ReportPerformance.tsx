@@ -118,6 +118,7 @@ class ReportPerformance extends Component<{}, ReportState> {
                         }}
                     >
                         <AgGridReact
+                            pagination={true}
                             // these are bound props, so can use anything in React state or props
                             modules={this.state.modules}
                             columnDefs={this.state.columnDefs}
