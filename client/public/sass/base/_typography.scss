@@ -5,8 +5,8 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    font-size: $ruler;
+    font-family: 'Gabriola','Montserrat', sans-serif;
+    font-size: $ruler + 10;
     font-weight: 400;
     line-height: 1.7;
     letter-spacing: -0.2px;
@@ -21,3 +21,9 @@ h1 {
     color: $color-secondary-dark;
 }
 
+@font-face {
+    font-family: 'Gabriola';
+    src: local('Gabriola'), url(../../fonts/Gabriola.ttf) format('ttf');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+  }

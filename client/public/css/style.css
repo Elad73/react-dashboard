@@ -34,8 +34,8 @@ html {
   font-size: 62.5%; }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
+  font-family: 'Gabriola','Montserrat', sans-serif;
+  font-size: 26px;
   font-weight: 400;
   line-height: 1.7;
   letter-spacing: -0.2px;
@@ -46,6 +46,12 @@ body {
 
 h1 {
   color: #394263; }
+
+@font-face {
+  font-family: 'Gabriola';
+  src: local("Gabriola"), url(../../fonts/Gabriola.ttf) format("ttf");
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */ }
 
 .builder {
   color: #394263; }
@@ -102,6 +108,17 @@ h1 {
 .hero-button:hover {
   background-color: #cb376a;
   border: 1px solid #db7598; }
+
+.report-container {
+  display: flex;
+  flex-direction: column; }
+
+.data-view {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-basis: 0; }
 
 /*** Assign grid instructions to our parent grid container ***/
 .grid-container {

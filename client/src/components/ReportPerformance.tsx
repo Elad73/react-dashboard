@@ -103,7 +103,6 @@ class ReportPerformance extends Component<{}, ReportState> {
         return (
             <div className='card'>
                 <div
-                    className='report-container'
                     style={{ width: '100%', height: '100%' }}
                 >
                     <h1>Title report</h1>

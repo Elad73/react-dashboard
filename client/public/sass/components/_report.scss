@@ -1,12 +1,28 @@
-// .report-container { 
+// .report-container {
 //     display: flex;
 //     flex-direction: column;
 // }
-// .report-container { 
-//     width: 100%;
-//     height: 100%;
-// }
+.report-container {
+    display: flex;
+    flex-direction: column;
+   
+    // width: 100%;
+    // height: 100%;
+}
 
-// .data-view { 
+.data-view {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-basis: 0;
+   
+
+    // width: 100%;
+    // height: 100%;
+}
+
+// .data-view {
 //     height: 600px;
 // }

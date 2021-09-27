@@ -42,7 +42,7 @@ class ReportDemo extends Component<{}, ReportState> {
                     field: 'type',
                     filter: true,
                 },
-             
+
                 {
                     field: 'message',
                     filter: true,
@@ -101,32 +101,20 @@ class ReportDemo extends Component<{}, ReportState> {
 
     render() {
         return (
-            <div className='card'>
-                <div
-                    className='report-container'
-                    style={{ width: '100%', height: '100%' }}
-                >
-                    <h1>Title report</h1>
-                    <div>This is a report description</div>
-                    <br />
-                    <div
-                        id='myGrid'
-                        className='ag-theme-alpine data-view'
-                        style={{
-                            height: '100%',
-                            width: '100%',
-                        }}
-                    >
-                        <AgGridReact
-                            // these are bound props, so can use anything in React state or props
-                            modules={this.state.modules}
-                            columnDefs={this.state.columnDefs}
-                            defaultColDef={this.state.defaultColDef}
-                            rowData={this.state.rowData}
-                            // inside onGridReady, you receive the grid APIs if you want them
-                            onGridReady={this.onGridReady}
-                        />
-                    </div>
+            <div className='report-container'>
+                <h1>Title report</h1>
+                <div>This is a report description</div>
+                <br />
+                <div className='ag-theme-alpine data-view' >
+                    <AgGridReact
+                        // these are bound props, so can use anything in React state or props
+                        modules={this.state.modules}
+                        columnDefs={this.state.columnDefs}
+                        defaultColDef={this.state.defaultColDef}
+                        rowData={this.state.rowData}
+                        // inside onGridReady, you receive the grid APIs if you want them
+                        onGridReady={this.onGridReady}
+                    />
                 </div>
             </div>
         );
