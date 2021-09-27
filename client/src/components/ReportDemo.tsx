@@ -1,36 +1,97 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
+import { SetFilterModule } from '@ag-grid-enterprise/set-filter';
+import { MenuModule } from '@ag-grid-enterprise/menu';
+import { ColumnsToolPanelModule } from '@ag-grid-enterprise/column-tool-panel';
+import '@ag-grid-community/core/dist/styles/ag-grid.css';
+import '@ag-grid-community/core/dist/styles/ag-theme-alpine.css';
+import axios from 'axios';
 
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-// import 'ag-grid-community/dist/styles/ag-theme-blue.css';
+interface ReportState {
+    modules: any[]; //replace any with suitable type
+    columnDefs: any[];
+    defaultColDef: {};
+    rowData: any[];
+    gridApi: any[];
+    columnApi: any[];
+}
 
-const ReportDemo = () => {
-    const [reportData, setReportData] = useState([]);
+class ReportDemo extends Component<{}, ReportState> {
+    constructor(props: any) {
+        super(props);
 
-    // useEffect(() => {
-    //     console.log('sending get request to /api/v1/reports/performance');
+        this.state = {
+            modules: [
+                ClientSideRowModelModule,
+                SetFilterModule,
+                MenuModule,
+                ColumnsToolPanelModule,
+            ],
+            columnDefs: [
+                {
+                    field: 'wid',
+                    filter: true,
+                },
+                {
+                    field: 'uid',
+                    filter: true,
+                },
+                {
+                    field: 'type',
+                    filter: true,
+                },
+             
+                {
+                    field: 'message',
+                    filter: true,
+                },
+                {
+                    field: 'location',
+                    filter: true,
+                },
+                {
+                    field: 'hostname',
+                    filter: 'agNumberColumnFilter',
+                },
+                {
+                    field: 'timestamp',
+                    sortable: true,
+                    filter: 'agNumberColumnFilter',
+                },
+                {
+                    field: 'file_name',
+                    sortable: true,
+                    filter: true,
+                },
+            ],
+            defaultColDef: {
+                flex: 1,
+                minWidth: 200,
+                resizable: true,
+                floatingFilter: true,
+            },
+            rowData: [],
+            gridApi: [],
+            columnApi: [],
+        };
+    }
 
-    //     axios.get(`/api/v1/reports/performance`).then((res) => {
-    //         setReportData(res.data);
-    //     });
-    // }, []);
-
-    const [gridApi, setGridApi] = useState(null);
-    const [gridColumnApi, setGridColumnApi] = useState(null);
-    const [rowData, setRowData] = useState([]);
-
-    const onGridReady = (params: any) => {
-        setGridApi(params.api);
-        setGridColumnApi(params.columnApi);
+    onGridReady = (params: any) => {
+        // this.gridApi = params.api;
+        // this.gridColumnApi = params.columnApi;
 
         const updateData = (data: any) => {
-            setRowData(data);
+            this.setState({
+                rowData: data,
+                gridApi: params.api,
+                columnApi: params.columnApi,
+            });
         };
 
-        // fetch(`/api/v1/reports/performance`)
-        //     .then((resp) => JSON.stringify(resp))
+        // fetch('http://localhost:3000/reports/performance')
+        //     .then((resp) => resp.json())
         //     .then((data) => updateData(data));
 
         axios.get(`/api/v1/reports/performance`).then((res) => {
@@ -38,80 +99,38 @@ const ReportDemo = () => {
         });
     };
 
-    return (
-        <div className='card'>
-            <div
-                className='report-container'
-                style={{ width: '100%', height: '100%' }}
-            >
-                <h1>Title report</h1>
-                <div>This is a report description</div>
-                <br />
+    render() {
+        return (
+            <div className='card'>
                 <div
-                    id='myGrid'
-                    className='ag-theme-alpine data-view'
-                    style={{
-                        height: '100%',
-                        width: '100%',
-                    }}
+                    className='report-container'
+                    style={{ width: '100%', height: '100%' }}
                 >
-                    <AgGridReact
-                        defaultColDef={{
-                            flex: 1,
-                            minWidth: 150,
-                            resizable: true,
-                            filter: true,
+                    <h1>Title report</h1>
+                    <div>This is a report description</div>
+                    <br />
+                    <div
+                        id='myGrid'
+                        className='ag-theme-alpine data-view'
+                        style={{
+                            height: '100%',
+                            width: '100%',
                         }}
-                        onGridReady={onGridReady}
-                        rowData={rowData}
                     >
-                        <AgGridColumn
-                            field='wid'
-                            sortable={true}
-                            filter={'agNumberColumnFilter'}
-                            filterParams={{
-                                buttons: ['apply', 'reset'],
-                                closeOnApply: true,
-                            }}
-                        ></AgGridColumn>
-                        <AgGridColumn
-                            field='uid'
-                            filter={'agNumberColumnFilter'}
-                        ></AgGridColumn>
-                        <AgGridColumn
-                            field='type'
-                            sortable={true}
-                            filter={'agTextColumnFilter'}
-                            filterParams={{ buttons: ['reset', 'apply'] }}
-                            checkboxSelection={true}
-                        ></AgGridColumn>
-                        <AgGridColumn
-                            field='message'
-                            filter={true}
-                        ></AgGridColumn>
-                        <AgGridColumn
-                            field='location'
-                            filter={true}
-                        ></AgGridColumn>
-                        <AgGridColumn
-                            field='hostname'
-                            filter={'agSetColumnFilter'}
-                            filterParams={{ buttons: ['clear', 'apply'] }}
-                        ></AgGridColumn>
-                        <AgGridColumn
-                            field='timestamp'
-                            sortable={true}
-                            filter={true}
-                        ></AgGridColumn>
-                        <AgGridColumn
-                            field='file_name'
-                            filter={'agSetColumnFilter'}
-                        ></AgGridColumn>
-                    </AgGridReact>
+                        <AgGridReact
+                            // these are bound props, so can use anything in React state or props
+                            modules={this.state.modules}
+                            columnDefs={this.state.columnDefs}
+                            defaultColDef={this.state.defaultColDef}
+                            rowData={this.state.rowData}
+                            // inside onGridReady, you receive the grid APIs if you want them
+                            onGridReady={this.onGridReady}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 export default ReportDemo;

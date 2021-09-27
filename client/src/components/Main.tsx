@@ -1,5 +1,4 @@
 import ReportPerformance from './ReportPerformance';
-import ReportDemo from './ReportDemo';
 
 function Main() {
     return (
@@ -24,7 +23,7 @@ function Main() {
             </div>
 
             <div className='main_cards'>
-                <ReportDemo />
+                <ReportPerformance />
                 <div className='card'>Card</div>
                 <div className='card'>Card</div>
             </div>

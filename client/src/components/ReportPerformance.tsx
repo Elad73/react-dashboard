@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { AgGridColumn, AgGridReact} from 'ag-grid-react';
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 import { SetFilterModule } from '@ag-grid-enterprise/set-filter';
 import { MenuModule } from '@ag-grid-enterprise/menu';
@@ -14,9 +14,11 @@ interface ReportState {
     columnDefs: any[];
     defaultColDef: {};
     rowData: any[];
+    gridApi: any[];
+    columnApi: any[];
 }
-  
-class ReportPerformance extends Component<{}, ReportState > {
+
+class ReportPerformance extends Component<{}, ReportState> {
     constructor(props: any) {
         super(props);
 
@@ -29,16 +31,39 @@ class ReportPerformance extends Component<{}, ReportState > {
             ],
             columnDefs: [
                 {
+                    field: 'wid',
+                    filter: true,
+                },
+                {
                     field: 'uid',
                     filter: true,
                 },
                 {
-                    field: 'wid',
-                    filter: 'agSetColumnFilter',
+                    field: 'type',
+                    filter: true,
+                },
+             
+                {
+                    field: 'message',
+                    filter: true,
+                },
+                {
+                    field: 'location',
+                    filter: true,
                 },
                 {
                     field: 'hostname',
                     filter: 'agNumberColumnFilter',
+                },
+                {
+                    field: 'timestamp',
+                    sortable: true,
+                    filter: 'agNumberColumnFilter',
+                },
+                {
+                    field: 'file_name',
+                    sortable: true,
+                    filter: true,
                 },
             ],
             defaultColDef: {
@@ -48,6 +73,8 @@ class ReportPerformance extends Component<{}, ReportState > {
                 floatingFilter: true,
             },
             rowData: [],
+            gridApi: [],
+            columnApi: [],
         };
     }
 
@@ -56,7 +83,11 @@ class ReportPerformance extends Component<{}, ReportState > {
         // this.gridColumnApi = params.columnApi;
 
         const updateData = (data: any) => {
-            this.setState({ rowData: data });
+            this.setState({
+                rowData: data,
+                gridApi: params.api,
+                columnApi: params.columnApi,
+            });
         };
 
         // fetch('http://localhost:3000/reports/performance')
@@ -87,11 +118,13 @@ class ReportPerformance extends Component<{}, ReportState > {
                         }}
                     >
                         <AgGridReact
+                            // these are bound props, so can use anything in React state or props
                             modules={this.state.modules}
                             columnDefs={this.state.columnDefs}
                             defaultColDef={this.state.defaultColDef}
-                            onGridReady={this.onGridReady}
                             rowData={this.state.rowData}
+                            // inside onGridReady, you receive the grid APIs if you want them
+                            onGridReady={this.onGridReady}
                         />
                     </div>
                 </div>
