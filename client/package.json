@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ag-grid-community/client-side-row-model": "^26.0.0",
+    "@ag-grid-enterprise/column-tool-panel": "^26.0.0",
+    "@ag-grid-enterprise/menu": "^26.0.0",
+    "@ag-grid-enterprise/set-filter": "^26.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

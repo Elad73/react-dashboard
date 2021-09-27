@@ -1,44 +1,103 @@
-import { useState, useEffect } from 'react';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { AgGridColumn, AgGridReact} from 'ag-grid-react';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
+import { SetFilterModule } from '@ag-grid-enterprise/set-filter';
+import { MenuModule } from '@ag-grid-enterprise/menu';
+import { ColumnsToolPanelModule } from '@ag-grid-enterprise/column-tool-panel';
+import '@ag-grid-community/core/dist/styles/ag-grid.css';
+import '@ag-grid-community/core/dist/styles/ag-theme-alpine.css';
 import axios from 'axios';
-import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-// import { fetchReportPerformance } from '../actions';
 
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-// import 'ag-grid-community/dist/styles/ag-theme-blue.css';
-// import 'ag-grid-community/dist/styles/ag-theme-fresh.css';
-// import 'ag-grid-community/dist/styles/ag-theme-bootstrap.css';
+interface ReportState {
+    modules: any[]; //replace any with suitable type
+    columnDefs: any[];
+    defaultColDef: {};
+    rowData: any[];
+}
+  
+class ReportPerformance extends Component<{}, ReportState > {
+    constructor(props: any) {
+        super(props);
 
-const ReportPerformance = () => {
-    const [reportData, setReportData] = useState([]);
+        this.state = {
+            modules: [
+                ClientSideRowModelModule,
+                SetFilterModule,
+                MenuModule,
+                ColumnsToolPanelModule,
+            ],
+            columnDefs: [
+                {
+                    field: 'uid',
+                    filter: true,
+                },
+                {
+                    field: 'wid',
+                    filter: 'agSetColumnFilter',
+                },
+                {
+                    field: 'hostname',
+                    filter: 'agNumberColumnFilter',
+                },
+            ],
+            defaultColDef: {
+                flex: 1,
+                minWidth: 200,
+                resizable: true,
+                floatingFilter: true,
+            },
+            rowData: [],
+        };
+    }
 
-    useEffect(() => {
-        console.log('sending get request to /api/v1/reports/performance');
+    onGridReady = (params: any) => {
+        // this.gridApi = params.api;
+        // this.gridColumnApi = params.columnApi;
+
+        const updateData = (data: any) => {
+            this.setState({ rowData: data });
+        };
+
+        // fetch('http://localhost:3000/reports/performance')
+        //     .then((resp) => resp.json())
+        //     .then((data) => updateData(data));
 
         axios.get(`/api/v1/reports/performance`).then((res) => {
-            setReportData(res.data);
+            updateData(res.data);
         });
-    }, []);
+    };
 
-    return (
-        <div className='report-container'>
-            <h1>Title report</h1>
-            <div>This is a report description</div>
-            <br />
-            <div className='ag-theme-alpine data-view' >
-                <AgGridReact reactUi={true } rowData={reportData}>
-                    <AgGridColumn field='wid' sortable={ true } filter={ true }></AgGridColumn>
-                    <AgGridColumn field='uid' filter={ true }></AgGridColumn>
-                    <AgGridColumn field='type' sortable={ true } filter={ true } checkboxSelection={true}></AgGridColumn>
-                    <AgGridColumn field='message' filter={ true }></AgGridColumn>
-                    <AgGridColumn field='location' filter={ true }></AgGridColumn>
-                    <AgGridColumn field='hostname' filter={ true }></AgGridColumn>
-                    <AgGridColumn field='timestamp' sortable={ true } filter={ true }></AgGridColumn>
-                    <AgGridColumn field='file_name' filter={ true }></AgGridColumn>
-                </AgGridReact>
+    render() {
+        return (
+            <div className='card'>
+                <div
+                    className='report-container'
+                    style={{ width: '100%', height: '100%' }}
+                >
+                    <h1>Title report</h1>
+                    <div>This is a report description</div>
+                    <br />
+                    <div
+                        id='myGrid'
+                        className='ag-theme-alpine data-view'
+                        style={{
+                            height: '100%',
+                            width: '100%',
+                        }}
+                    >
+                        <AgGridReact
+                            modules={this.state.modules}
+                            columnDefs={this.state.columnDefs}
+                            defaultColDef={this.state.defaultColDef}
+                            onGridReady={this.onGridReady}
+                            rowData={this.state.rowData}
+                        />
+                    </div>
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 export default ReportPerformance;

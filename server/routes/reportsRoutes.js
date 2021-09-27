@@ -28,7 +28,7 @@ module.exports = (app) => {
 
         try {
             conn = await pool.getConnection();
-            const query = 'SELECT * FROM drup_watchdog limit 5';
+            const query = 'SELECT * FROM drup_watchdog limit 100';
             dbRes = await conn.query(query);
             console.log('returned from DB: ' + JSON.stringify(dbRes)); //[ {val: 1}, meta: ... ]
             // const res = await conn.query("INSERT INTO myTable value (?, ?)", [1, "mariadb"]);

@@ -11,6 +11,8 @@ class App extends Component {
                 <div>
                     <Route exact path='/' component={Landing} />
                     <Route exact path='/dashboard' component={Dashboard} />
+                </div>
+                <div className="main_cards">
                     <Route exact path='/reports/performance' component={ReportPerformance} />
                 </div>
             </BrowserRouter>
