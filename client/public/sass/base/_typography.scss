@@ -14,5 +14,10 @@ body {
   
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: $color-secondary-dark;
+}
+
+h1 {
+    color: $color-secondary-dark;
 }
 

@@ -4,13 +4,12 @@
 @import './base/typography';
 
 @import './components/builder';
+@import './components/hero';
+@import './components/report';
 
-// @import './layout/breakpoints';
-// @import './layout/grid';
-// @import './layout/header-footer';
-// @import './layout/sidenav';
+@import './layout/grid';
+@import './layout/sidenav';
+@import './layout/breakpoints';
+@import './layout/header-footer';
 
-@import 'layout/grid';
-@import 'layout/sidenav';
-@import 'layout/breakpoints';
-@import 'layout/header-footer';
+@import './vendors/ag-grid';

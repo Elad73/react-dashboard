@@ -3,9 +3,13 @@
 
 // @import "~react-querybuilder/dist/query-builder.scss";
 
-body {
+html, body{
+  min-height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+body {
   box-sizing: border-box;
   font-family: monospace;
   font-size: 15px;
