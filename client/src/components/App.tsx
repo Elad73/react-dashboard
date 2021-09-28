@@ -12,11 +12,8 @@ class App extends Component {
                 <div>
                     <Route exact path='/' component={Landing} />
                     <Route exact path='/dashboard' component={Dashboard} />
-                </div>
-                <div >
                     <Route exact path='/reports/performance' component={ReportDemo} />
                 </div>
-                <Route exact path='/reports/performance' component={ReportDemo} />
             </BrowserRouter>
         );
     }

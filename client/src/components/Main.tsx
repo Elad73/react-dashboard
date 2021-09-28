@@ -1,3 +1,4 @@
+import ReportDemo from './ReportDemo';
 import ReportPerformance from './ReportPerformance';
 
 function Main() {
@@ -23,9 +24,15 @@ function Main() {
             </div>
 
             <div className='main_cards'>
-                <ReportPerformance />
-                <div className='card'>Card</div>
-                <div className='card'>Card</div>
+                <div className='card'>
+                    <ReportDemo />
+                </div>
+                <div className='card'>
+                    <ReportDemo />
+                </div>
+                <div className='card'>
+                    <ReportDemo />
+                </div>
             </div>
         </main>
     );

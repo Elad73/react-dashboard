@@ -101,24 +101,49 @@ class ReportDemo extends Component<{}, ReportState> {
 
     render() {
         return (
-            <div className='report-container'>
-                <h1>Title report</h1>
-                <div>This is a report description</div>
-                <br />
-                <div className='ag-theme-alpine data-view' >
-                    <AgGridReact
-                        // these are bound props, so can use anything in React state or props
-                        modules={this.state.modules}
-                        columnDefs={this.state.columnDefs}
-                        defaultColDef={this.state.defaultColDef}
-                        rowData={this.state.rowData}
-                        // inside onGridReady, you receive the grid APIs if you want them
-                        onGridReady={this.onGridReady}
-                    />
-                </div>
+            <div
+                id='myGrid'
+                style={{
+                    height: '95vh',
+                    width: '100%',
+                }}
+                className='ag-theme-alpine'
+            >
+                <AgGridReact
+                    pagination={true}
+                    // these are bound props, so can use anything in React state or props
+                    modules={this.state.modules}
+                    columnDefs={this.state.columnDefs}
+                    defaultColDef={this.state.defaultColDef}
+                    rowData={this.state.rowData}
+                    // inside onGridReady, you receive the grid APIs if you want them
+                    onGridReady={this.onGridReady}
+                />
             </div>
         );
     }
 }
 
 export default ReportDemo;
+
+// working version
+// render() {
+//     return (
+//         <div className='report-container'>
+//             <h1>Title report</h1>
+//             <div>This is a report description</div>
+//             <br />
+//             <div className='ag-theme-alpine data-view' >
+//                 <AgGridReact
+//                     // these are bound props, so can use anything in React state or props
+//                     modules={this.state.modules}
+//                     columnDefs={this.state.columnDefs}
+//                     defaultColDef={this.state.defaultColDef}
+//                     rowData={this.state.rowData}
+//                     // inside onGridReady, you receive the grid APIs if you want them
+//                     onGridReady={this.onGridReady}
+//                 />
+//             </div>
+//         </div>
+//     );
+// }
